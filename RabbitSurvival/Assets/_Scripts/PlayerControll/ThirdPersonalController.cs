@@ -15,9 +15,14 @@ public class ThirdPersonalController : MonoBehaviour
 
     private float turnSmoothVelocity;
 
+    private float energy = 100.0f;
+    private bool isCarrot;
+    private float timerCarrotEffect = 5.0f;
+
     private void Start()
     {
         tpa = GetComponent<ThirdPersonalAnimations>();
+        GameManager.Instance.EnergyUI(energy);
     }
     // private void Update()
     // {
@@ -27,6 +32,36 @@ public class ThirdPersonalController : MonoBehaviour
     {
         speed = _speed;
         //tpa.WalkRunAnim(speed);
+    }
+    public void AddEnegy(float _enegy)
+    {
+        energy += _enegy;
+        GameManager.Instance.EnergyUI(energy);
+    }
+    public void Carrot()
+    {
+        isCarrot = true;
+    }
+    private void Update()
+    {
+        energy -= Time.deltaTime;
+        GameManager.Instance.EnergyUI(energy);
+
+        if(energy <= 0)
+        {
+            GameManager.Instance.StatusGame(false);
+        }
+        if (isCarrot)
+        {
+            speed = 10.0f;
+            timerCarrotEffect -= Time.deltaTime;
+            if(timerCarrotEffect <= 0)
+            {
+                speed = 5.0f;
+                timerCarrotEffect = 5;
+                isCarrot = false;
+            }
+        }
     }
     public void Movement(float h, float v)
     {
