@@ -1,1 +1,1 @@
-D:\_МоиПроекты\UnityProjects\ЯндексИгры\Проекты\RabbitSurvival\RabbitSurvival
+D:\_MyPROJECTS\UnityGames\RabbitSurvival\RabbitSurvival
