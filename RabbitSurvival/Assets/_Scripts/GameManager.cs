@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Instance = this;
+        Time.timeScale = 1.0f;
     }
     public void EnergyUI(float _energy)
     {
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour
     }
     public void StatusGame(bool _isWin)
     {
+        Time.timeScale = 0.0f;
         PanelManager.PanelInstance.ShowPanel(true);
         if (_isWin)
         {

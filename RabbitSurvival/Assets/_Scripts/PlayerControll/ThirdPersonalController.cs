@@ -16,6 +16,8 @@ public class ThirdPersonalController : MonoBehaviour
     private float turnSmoothVelocity;
 
     private float energy = 100.0f;
+    [SerializeField]
+    private float energySpeed;
     private bool isCarrot;
     private float timerCarrotEffect = 5.0f;
 
@@ -36,6 +38,10 @@ public class ThirdPersonalController : MonoBehaviour
     public void AddEnegy(float _enegy)
     {
         energy += _enegy;
+        if(energy > 100)
+        {
+            energy = 100;
+        }
         GameManager.Instance.EnergyUI(energy);
     }
     public void Carrot()
@@ -44,7 +50,7 @@ public class ThirdPersonalController : MonoBehaviour
     }
     private void Update()
     {
-        energy -= Time.deltaTime;
+        energy -= energySpeed * Time.deltaTime;
         GameManager.Instance.EnergyUI(energy);
 
         if(energy <= 0)
