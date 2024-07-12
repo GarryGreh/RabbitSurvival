@@ -21,10 +21,14 @@ public class ThirdPersonalController : MonoBehaviour
     private bool isCarrot;
     private float timerCarrotEffect = 5.0f;
 
+    private Vector3 startPos;
+    private float distance;
+
     private void Start()
     {
         tpa = GetComponent<ThirdPersonalAnimations>();
         GameManager.Instance.EnergyUI(energy);
+        startPos = transform.position;
     }
     // private void Update()
     // {
@@ -52,6 +56,9 @@ public class ThirdPersonalController : MonoBehaviour
     {
         energy -= energySpeed * Time.deltaTime;
         GameManager.Instance.EnergyUI(energy);
+
+        distance = Vector3.Distance(startPos, transform.position);
+        GameManager.Instance.Distance(distance);
 
         if(energy <= 0)
         {
